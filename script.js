@@ -3,7 +3,7 @@ const publications = [
     year: 2026,
     type: "preprint",
     typeLabel: "Preprint",
-    title: "Pre-Deployment Advertisement Ranking under Data Scarcity via Context-Aware Criteria Generation with VLMs",
+    title: "TaLK: Text-attributed Graph Dataset Distillation via Coupling Language Model with Graph-Aware Kernel",
     authors: [
       "Yeongho Kim",
       "Yeonje Choi",
