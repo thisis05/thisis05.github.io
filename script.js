@@ -140,6 +140,10 @@ const formatNote = (note) => {
   }
 
   return note.map((part) => {
+    if (part.break) {
+      return "<br>";
+    }
+
     if (part.ref) {
       return `<a class="note-ref" href="#pub-${escapeAttribute(part.ref)}">${escapeHTML(part.ref)}</a>`;
     }
