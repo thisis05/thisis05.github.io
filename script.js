@@ -60,7 +60,7 @@ const publications = [
       "Juyeon Kim",
       "Kijung Shin"
     ],
-    venue: "ICLR  (DATA-FM)",
+    venue: "ICLR 2026 DATA-FM Workshop",
     keywords: ["Multimodal Learning", "Marketing AI"],
     links: [
       { label: "Paper", url: "https://openreview.net/pdf?id=QnFwLLRyPV" },
@@ -126,11 +126,13 @@ const formatAuthors = (authors) => authors
     return safeAuthor.replace(/Yeongho Kim/g, '<strong class="me">Yeongho Kim</strong>');
   })
   .join(", ");
+
 const getPublicationPrefix = (type) => {
   const prefixes = {
     conference: "C",
-    preprint: "P",
-    journal: "J"
+    workshop: "W",
+    journal: "J",
+    preprint: "P"
   };
 
   return prefixes[type] || "O";
@@ -139,8 +141,9 @@ const getPublicationPrefix = (type) => {
 const getNumberedPublications = () => {
   const counters = {
     conference: 0,
-    preprint: 0,
-    journal: 0
+    workshop: 0,
+    journal: 0,
+    preprint: 0
   };
 
   return publications.map((publication) => {
@@ -180,24 +183,26 @@ const renderPublications = (filter = "all") => {
     .sort((a, b) => Number(b) - Number(a))
     .map((year) => `
       <div class="pub-year">${escapeHTML(year)}</div>
+
       ${groupedByYear[year].map((publication) => `
         <article class="pub-card">
           <div class="pub-topline">
-            <span class="pub-number">${escapeHTML(publication.pubNumber)}</span>
             <span class="pub-type">${escapeHTML(publication.typeLabel)}</span>
             <span class="pub-venue-short">${escapeHTML(publication.venue)}</span>
           </div>
 
-          <h3 class="pub-title">${escapeHTML(publication.title)}</h3>
+          <h3 class="pub-title">
+            <span class="pub-title-number">[${escapeHTML(publication.pubNumber)}]</span>
+            ${escapeHTML(publication.title)}
+          </h3>
 
           <div class="pub-keywords">
-            ${publication.keywords.map((keyword) => `
-              <span>${escapeHTML(keyword)}</span>
+            ${(publication.keywords || []).map((keyword) => `
+              <span class="pub-keyword">${escapeHTML(keyword)}</span>
             `).join("")}
           </div>
 
           <p class="pub-authors">${formatAuthors(publication.authors)}</p>
-          <p class="pub-venue">${escapeHTML(publication.venue)}</p>
 
           ${publication.note ? `<p class="pub-note">${escapeHTML(publication.note)}</p>` : ""}
 
@@ -267,7 +272,9 @@ const setupActiveNav = () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
+
       const id = entry.target.getAttribute("id");
+
       navLinks.forEach((link) => {
         link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
       });
