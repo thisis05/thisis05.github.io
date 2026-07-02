@@ -93,7 +93,7 @@ const publications = [
     authors: ["Jaewan Chun", "Fanchen Bu", "Yeongho Kim", "Atsushi Miyauchi", "Francesco Bonchi", "Kijung Shin"],
     venue: "Preprint",
     note: "Survey of centrality and importance measures for hypergraphs.",
-    keywords: ["Hypergraphs", "Centrality", "Survey"],
+    keywords: ["Hypergraph Mining"],
     links: [
       { label: "Paper", url: "https://arxiv.org/abs/2512.00107" },
       { label: "Code", url: "https://github.com/jaewan01/hypergraph-centrality-survey" }
