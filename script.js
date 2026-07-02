@@ -146,7 +146,7 @@ const getNumberedPublications = () => {
     preprint: 0
   };
 
-  return publications.map((publication) => {
+  const numberedReversed = [...publications].reverse().map((publication) => {
     const type = publication.type;
 
     if (!Object.prototype.hasOwnProperty.call(counters, type)) {
@@ -160,6 +160,8 @@ const getNumberedPublications = () => {
       pubNumber: `${getPublicationPrefix(type)}${counters[type]}`
     };
   });
+
+  return numberedReversed.reverse();
 };
 
 const renderPublications = (filter = "all") => {
@@ -186,9 +188,10 @@ const renderPublications = (filter = "all") => {
 
       ${groupedByYear[year].map((publication) => `
         <article class="pub-card">
-          <div class="pub-topline">
-            <span class="pub-type">${escapeHTML(publication.typeLabel)}</span>
-            <span class="pub-venue-short">${escapeHTML(publication.venue)}</span>
+          <div class="pub-keywords pub-keywords-top">
+            ${(publication.keywords || []).map((keyword) => `
+              <span class="pub-keyword">${escapeHTML(keyword)}</span>
+            `).join("")}
           </div>
 
           <h3 class="pub-title">
@@ -196,13 +199,9 @@ const renderPublications = (filter = "all") => {
             ${escapeHTML(publication.title)}
           </h3>
 
-          <div class="pub-keywords">
-            ${(publication.keywords || []).map((keyword) => `
-              <span class="pub-keyword">${escapeHTML(keyword)}</span>
-            `).join("")}
-          </div>
-
           <p class="pub-authors">${formatAuthors(publication.authors)}</p>
+
+          <p class="pub-venue">${escapeHTML(publication.venue)}</p>
 
           ${publication.note ? `<p class="pub-note">${escapeHTML(publication.note)}</p>` : ""}
 
