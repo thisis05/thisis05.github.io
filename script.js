@@ -37,12 +37,11 @@ const publications = [
     venue: "ACL 2026 Industry Track",
     note: [
       { text: "Selected for oral presentation.", highlight: true },
-      { break: true },
-      { text: "A preliminary version appeared at " },
+      { text: " (A preliminary version appeared at " },
       { ref: "W1" },
-      { text: "." }
+      { text: ".)" }
     ],
-    keywords: ["Multimodal Learning", "Marketing AI"],
+    keywords: ["Multimodal Reasoning", "Marketing AI"],
     links: [
       { label: "Paper", url: "https://aclanthology.org/2026.acl-industry.28/" },
       { label: "Code", url: "https://github.com/K-Kyungho/ADvisor" }
@@ -67,7 +66,7 @@ const publications = [
       "Kijung Shin"
     ],
     venue: "ICLR 2026 DATA-FM Workshop",
-    keywords: ["Multimodal Learning", "Marketing AI"],
+    keywords: ["Multimodal Reasoning", "Marketing AI"],
     links: [
       { label: "Paper", url: "https://openreview.net/pdf?id=QnFwLLRyPV" },
       { label: "Code", url: "https://github.com/K-Kyungho/ADvisor" }
