@@ -1,207 +1,299 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Personal academic homepage for Yeongho Kim. Research, publications, experience, education, awards, and contact information."
-  />
-  <title>Yeongho Kim</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+const publications = [
+  {
+    year: 2026,
+    type: "preprint",
+    typeLabel: "Preprint",
+    title: "Pre-Deployment Advertisement Ranking under Data Scarcity via Context-Aware Criteria Generation with VLMs",
+    authors: [
+      "Yeongho Kim",
+      "Yeonje Choi",
+      "Kijung Shin"
+    ],
+    venue: "arXiv",
+    keywords: ["Dataset Distillation", "Text-attributed Graph"],
+    links: [
+      { label: "Paper", url: "https://arxiv.org/abs/2606.22975" },
+      { label: "Code", url: "https://github.com/thisis05/TaLK" }
+    ]
+  },
+  {
+    year: 2026,
+    type: "conference",
+    typeLabel: "Conference",
+    title: "Pre-Deployment Advertisement Ranking under Data Scarcity via Context-Aware Criteria Generation with VLMs",
+    authors: [
+      "Kyungho Kim*",
+      "Yeonje Choi*",
+      "Gyurim Hwang",
+      "Sejin Chung",
+      "Hongseok Lee",
+      "Myeong Ho Song",
+      "Yeongho Kim",
+      "Sunwoo Kim",
+      "Jongha Lee",
+      "Juyeon Kim",
+      "Kijung Shin"
+    ],
+    venue: "ACL 2026 Industry Track",
+    note: "Selected for oral presentation. A preliminary version appeared at DATA-FM 2026.",
+    keywords: ["Multimodal Learning", "Marketing AI"],
+    links: [
+      { label: "Paper", url: "https://aclanthology.org/2026.acl-industry.28/" },
+      { label: "Code", url: "https://github.com/K-Kyungho/ADvisor" }
+    ]
+  },
+  {
+    year: 2026,
+    type: "workshop",
+    typeLabel: "Workshop",
+    title: "Context-Aware Criteria Generation with VLMs for Advertisement Ranking under Data Scarcity",
+    authors: [
+      "Kyungho Kim",
+      "Yeonje Choi",
+      "Gyurim Hwang",
+      "Sejin Chung",
+      "Hongseok Lee",
+      "Myeong Ho Song",
+      "Yeongho Kim",
+      "Sunwoo Kim",
+      "Jongha Lee",
+      "Juyeon Kim",
+      "Kijung Shin"
+    ],
+    venue: "ICLR 2026 DATA-FM Workshop",
+    keywords: ["Multimodal Learning", "Marketing AI"],
+    links: [
+      { label: "Paper", url: "https://openreview.net/pdf?id=QnFwLLRyPV" },
+      { label: "Code", url: "https://github.com/K-Kyungho/ADvisor" }
+    ]
+  },
+  {
+    year: 2026,
+    type: "conference",
+    typeLabel: "Conference",
+    title: "Effective Dataset Distillation for Spatio-Temporal Forecasting with Bi-dimensional Compression",
+    authors: ["Taehyung Kwon*", "Yeonje Choi*", "Yeongho Kim", "Kijung Shin"],
+    venue: "ICDE 2026",
+    keywords: ["Dataset Distillation", "Spatio-Temporal Forecasting"],
+    links: [
+      { label: "Paper", url: "https://arxiv.org/abs/2603.10410" },
+      { label: "Code", url: "https://github.com/kbrother/STemDist" }
+    ]
+  },
+  {
+    year: 2025,
+    type: "preprint",
+    typeLabel: "Preprint",
+    title: "A Survey on Centrality and Importance Measures in Hypergraphs: Categorization and Empirical Insights",
+    authors: ["Jaewan Chun", "Fanchen Bu", "Yeongho Kim", "Atsushi Miyauchi", "Francesco Bonchi", "Kijung Shin"],
+    venue: "arXiv",
+    note: "Survey of centrality and importance measures for hypergraphs.",
+    keywords: ["Hypergraphs", "Centrality", "Survey"],
+    links: [
+      { label: "Paper", url: "https://arxiv.org/abs/2512.00107" },
+      { label: "Code", url: "https://github.com/jaewan01/hypergraph-centrality-survey" }
+    ]
+  },
+  {
+    year: 2025,
+    type: "conference",
+    typeLabel: "Conference",
+    title: "Beyond Neighbors: Distance-Generalized Graphlets for Enhanced Graph Characterization",
+    authors: ["Yeongho Kim", "Yuyeong Kim", "Geon Lee", "Kijung Shin"],
+    venue: "WWW 2025",
+    keywords: ["Graph Mining"],
+    links: [
+      { label: "Paper", url: "https://doi.org/10.1145/3696410.3714558" },
+      { label: "Code", url: "https://github.com/thisis05/EDGE" }
+    ]
+  }
+];
 
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Go to homepage">Yeongho Kim</a>
+const escapeHTML = (value) =>
+  String(value).replace(/[&<>'"]/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "'": "&#039;",
+    '"': "&quot;"
+  }[character]));
 
-      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+const escapeAttribute = (value) => escapeHTML(value).replace(/`/g, "&#096;");
 
-      <div class="nav-links" id="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#awards">Awards</a>
-        <a href="#contact">Contact</a>
-      </div>
+const formatAuthors = (authors) => authors
+  .map((author) => {
+    const safeAuthor = escapeHTML(author);
+    return safeAuthor.replace(/Yeongho Kim/g, '<strong class="me">Yeongho Kim</strong>');
+  })
+  .join(", ");
 
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-        <span class="theme-icon" aria-hidden="true">◐</span>
-      </button>
-    </nav>
-  </header>
+const getPublicationPrefix = (type) => {
+  const prefixes = {
+    conference: "C",
+    workshop: "W",
+    journal: "J",
+    preprint: "P"
+  };
 
-  <main id="main" class="container page-layout">
-    <aside id="home" class="profile-card" aria-label="Profile summary">
-      <div class="profile-photo-wrap">
-        <img
-          class="profile-photo"
-          src="assets/profile.jpg"
-          alt="Profile photo of Yeongho Kim"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-        />
-        <div class="photo-fallback" aria-hidden="true">YK</div>
-      </div>
+  return prefixes[type] || "O";
+};
 
-      <h1>Yeongho Kim</h1>
-      <p class="role">Master Student</p>
-      <p class="affiliation">KAIST AI</p>
+const getNumberedPublications = () => {
+  const counters = {
+    conference: 0,
+    workshop: 0,
+    journal: 0,
+    preprint: 0
+  };
 
-      <div class="profile-meta">
-        <p>yeongho [at] kaist.ac.kr</p>
-        <p>Seoul, Republic of Korea</p>
-      </div>
+  return publications.map((publication) => {
+    const type = publication.type;
 
-      <div class="profile-links" aria-label="Profile links">
-        <a href="assets/cv.pdf">CV</a>
-        <a href="https://scholar.google.com/citations?user=4h6r_rEAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer">Scholar</a>
-        <a href="https://github.com/thisis05" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/yeongho-kim-0b16a7314/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
+    if (!Object.prototype.hasOwnProperty.call(counters, type)) {
+      counters[type] = 0;
+    }
 
-      <div class="quick-tags" aria-label="Research keywords">
-        <span>Graph ML</span>
-        <span>Dataset Distillation</span>
-        <span>Multimodal Learning</span>
-      </div>
-    </aside>
+    counters[type] += 1;
 
-    <div class="content">
-      <section id="about" class="section hero-section">
-        <p class="eyebrow">Personal Academic Website</p>
-        <h2>About</h2>
-        <p>
-          I am a M.S. student at
-          <a href="https://gsai.kaist.ac.kr" target="_blank" rel="noopener noreferrer">KAIST AI</a>,
-          advised by
-          <a href="https://kijungs.github.io/" target="_blank" rel="noopener noreferrer">Prof. Kijung Shin</a>
-          at 
-          <a href="https://sites.google.com/view/kaistdata/home?authuser=0" target="_blank" rel="noopener noreferrer">Data Mining Lab</a>.
-          My research focuses on graph mining and graph machine learning, and I am currently exploring multimodal learning and dataset distillation for structured data.
-        </p>
-      </section>
+    return {
+      ...publication,
+      pubNumber: `${getPublicationPrefix(type)}${counters[type]}`
+    };
+  });
+};
 
-      <section id="research" class="section">
-        <div class="section-heading">
-          <h2>Research Interests</h2>
-        </div>
-        <div class="interest-grid">
-          <article>
-            <h3>Graph Mining/Learning</h3>
-            <p>TODO: Add one or two sentences.</p>
-          </article>
-          <article>
-            <h3>Dataset Distillation</h3>
-            <p>TODO: Add one or two sentences.</p>
-          </article>
-          <article>
-            <h3>Multimodal Learning</h3>
-            <p>TODO: Add one or two sentences.</p>
-          </article>
-        </div>
-      </section>
+const renderPublications = (filter = "all") => {
+  const container = document.getElementById("publication-list");
+  if (!container) return;
 
-      <section id="publications" class="section">
-        <div class="section-heading">
-          <h2>Publications</h2>
-          <p>Publication data is rendered from <code>script.js</code>.</p>
-        </div>
+  const numberedPublications = getNumberedPublications();
 
-        <div class="pub-toolbar" aria-label="Publication filters">
-          <button class="filter-btn active" type="button" data-filter="all">All</button>
-          <button class="filter-btn" type="button" data-filter="conference">Conference</button>
-          <button class="filter-btn" type="button" data-filter="workshop">Workshop</button>
-          <button class="filter-btn" type="button" data-filter="journal">Journal</button>
-          <button class="filter-btn" type="button" data-filter="preprint">Preprint</button>
-        </div>
+  const visiblePublications = numberedPublications.filter((publication) =>
+    filter === "all" || publication.type === filter
+  );
 
-        <div id="publication-list" class="publication-list" aria-live="polite"></div>
-      </section>
+  const groupedByYear = visiblePublications.reduce((groups, publication) => {
+    const year = publication.year;
+    if (!groups[year]) groups[year] = [];
+    groups[year].push(publication);
+    return groups;
+  }, {});
 
-      <section id="education" class="section">
-        <div class="section-heading">
-          <h2>Education</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-date">2025.03 - Present</div>
-            <div>
-              <h3>M.S. in Artificial Intelligence</h3>
-              <p>KAIST, Republic of Korea.</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <div class="timeline-date">2019.03 - 2025.02 </div>
-            <div>
-              <h3>B.A. in Economics and B.S. in Computer Science</h3>
-              <p>Yonsei University, Republic of Korea.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-      
-      <section id="experience" class="section">
-        <div class="section-heading">
-          <h2>Experience</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <div class="timeline-date">2024.01 - 2024.12</div>
-            <div>
-              <h3>Research Intern</h3>
-              <p>
-                <a href="https://sites.google.com/view/kaistdata/team?authuser=0" target="_blank" rel="noopener noreferrer">Data Mining Lab</a>,
-                KAIST AI, Seoul, Republic of Korea.
-              </p>
-            </div>
-          </article>
-          
-          <article class="timeline-item">
-            <div class="timeline-date">2023.03 - 2023.09</div>
-            <div>
-              <h3>Medical Statistics Analyst</h3>
-              <p>
-                <a href="https://www.zarathu.com/" target="_blank" rel="noopener noreferrer">Zarathu Co., Ltd.</a>,
-                Seoul, Republic of Korea.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
+  const html = Object.keys(groupedByYear)
+    .sort((a, b) => Number(b) - Number(a))
+    .map((year) => `
+      <div class="pub-year">${escapeHTML(year)}</div>
 
+      ${groupedByYear[year].map((publication) => `
+        <article class="pub-card">
+          <div class="pub-topline">
+            <span class="pub-type">${escapeHTML(publication.typeLabel)}</span>
+            <span class="pub-venue-short">${escapeHTML(publication.venue)}</span>
+          </div>
 
-      <section id="awards" class="section">
-        <div class="section-heading">
-          <h2>Awards & Honors</h2>
-        </div>
-        <ul class="simple-list">
-        </ul>
-      </section>
+          <h3 class="pub-title">
+            <span class="pub-title-number">[${escapeHTML(publication.pubNumber)}]</span>
+            ${escapeHTML(publication.title)}
+          </h3>
 
-      <section id="contact" class="section">
-        <div class="section-heading">
-          <h2>Contact</h2>
-        </div>
-        <p>
-          Email: <a href="mailto:yeongho@kaist.ac.kr">yeongho [at] kaist.ac.kr</a>
-        </p>
-      </section>
-    </div>
-  </main>
+          <div class="pub-keywords">
+            ${(publication.keywords || []).map((keyword) => `
+              <span class="pub-keyword">${escapeHTML(keyword)}</span>
+            `).join("")}
+          </div>
 
-  <footer class="footer container">
-    <span>© <span id="current-year"></span> Yeongho Kim.</span>
-    <span>Last updated: July 2026.</span>
-  </footer>
+          <p class="pub-authors">${formatAuthors(publication.authors)}</p>
 
-  <script src="script.js"></script>
-</body>
-</html>
+          ${publication.note ? `<p class="pub-note">${escapeHTML(publication.note)}</p>` : ""}
+
+          <div class="pub-links">
+            ${publication.links.map((link) => `
+              <a class="pub-link" href="${escapeAttribute(link.url)}" target="_blank" rel="noopener noreferrer">
+                ${escapeHTML(link.label)}
+              </a>
+            `).join("")}
+          </div>
+        </article>
+      `).join("")}
+    `)
+    .join("");
+
+  container.innerHTML = html || '<p class="pub-note">No publications found for this filter.</p>';
+};
+
+const setupPublicationFilters = () => {
+  document.querySelectorAll(".filter-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      renderPublications(button.dataset.filter);
+    });
+  });
+};
+
+const setupThemeToggle = () => {
+  const themeToggle = document.querySelector(".theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+
+  document.documentElement.dataset.theme = initialTheme;
+
+  themeToggle?.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem("theme", nextTheme);
+  });
+};
+
+const setupMobileMenu = () => {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = document.body.classList.toggle("menu-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      document.body.classList.remove("menu-open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+};
+
+const setupActiveNav = () => {
+  const sections = [...document.querySelectorAll("section[id]")];
+  const navLinks = [...document.querySelectorAll(".nav-links a")];
+
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const id = entry.target.getAttribute("id");
+
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+      });
+    });
+  }, { rootMargin: "-30% 0px -60% 0px", threshold: 0.1 });
+
+  sections.forEach((section) => observer.observe(section));
+};
+
+const setupCurrentYear = () => {
+  const currentYear = document.getElementById("current-year");
+  if (currentYear) currentYear.textContent = new Date().getFullYear();
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupThemeToggle();
+  setupMobileMenu();
+  setupPublicationFilters();
+  setupActiveNav();
+  setupCurrentYear();
+  renderPublications();
+});
