@@ -9,7 +9,7 @@ const publications = [
       "Yeonje Choi",
       "Kijung Shin"
     ],
-    venue: "arXiv",
+    venue: "Preprint",
     keywords: ["Dataset Distillation", "Text-attributed Graph"],
     links: [
       { label: "Paper", url: "https://arxiv.org/abs/2606.22975" },
@@ -35,7 +35,12 @@ const publications = [
       "Kijung Shin"
     ],
     venue: "ACL 2026 Industry Track",
-    note: "Selected for oral presentation. A preliminary version appeared at DATA-FM 2026.",
+    note: [
+      { text: "Selected for oral presentation.", highlight: true },
+      { text: " A preliminary version appeared at " },
+      { ref: "W1" },
+      { text: "." }
+    ],
     keywords: ["Multimodal Learning", "Marketing AI"],
     links: [
       { label: "Paper", url: "https://aclanthology.org/2026.acl-industry.28/" },
@@ -127,6 +132,23 @@ const formatAuthors = (authors) => authors
   })
   .join(", ");
 
+const formatNote = (note) => {
+  if (!note) return "";
+
+  if (typeof note === "string") {
+    return escapeHTML(note);
+  }
+
+  return note.map((part) => {
+    if (part.ref) {
+      return `<a class="note-ref" href="#pub-${escapeAttribute(part.ref)}">${escapeHTML(part.ref)}</a>`;
+    }
+
+    const text = escapeHTML(part.text || "");
+    return part.highlight ? `<strong class="note-highlight">${text}</strong>` : text;
+  }).join("");
+};
+
 const getPublicationPrefix = (type) => {
   const prefixes = {
     conference: "C",
@@ -187,7 +209,7 @@ const renderPublications = (filter = "all") => {
       <div class="pub-year">${escapeHTML(year)}</div>
 
       ${groupedByYear[year].map((publication) => `
-        <article class="pub-card">
+        <article class="pub-card" id="pub-${escapeAttribute(publication.pubNumber)}">
           <div class="pub-keywords pub-keywords-top">
             ${(publication.keywords || []).map((keyword) => `
               <span class="pub-keyword">${escapeHTML(keyword)}</span>
@@ -203,7 +225,7 @@ const renderPublications = (filter = "all") => {
 
           <p class="pub-venue">${escapeHTML(publication.venue)}</p>
 
-          ${publication.note ? `<p class="pub-note">${escapeHTML(publication.note)}</p>` : ""}
+          ${publication.note ? `<p class="pub-note">${formatNote(publication.note)}</p>` : ""}
 
           <div class="pub-links">
             ${publication.links.map((link) => `
