@@ -222,7 +222,6 @@ const renderPublications = (filter = "all") => {
           </h3>
 
           <p class="pub-authors">${formatAuthors(publication.authors)}</p>
-
           <p class="pub-venue">${escapeHTML(publication.venue)}</p>
 
           ${publication.note ? `<p class="pub-note">${formatNote(publication.note)}</p>` : ""}
@@ -252,18 +251,15 @@ const setupPublicationFilters = () => {
   });
 };
 
-const setupThemeToggle = () => {
-  const themeToggle = document.querySelector(".theme-toggle");
-  const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+const setupPdfDownload = () => {
+  const button = document.getElementById("download-page-pdf");
+  if (!button) return;
 
-  document.documentElement.dataset.theme = initialTheme;
-
-  themeToggle?.addEventListener("click", () => {
-    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = nextTheme;
-    localStorage.setItem("theme", nextTheme);
+  button.addEventListener("click", () => {
+    const originalTitle = document.title;
+    document.title = "Yeongho_Kim_CV";
+    window.print();
+    document.title = originalTitle;
   });
 };
 
@@ -311,9 +307,9 @@ const setupCurrentYear = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  setupThemeToggle();
   setupMobileMenu();
   setupPublicationFilters();
+  setupPdfDownload();
   setupActiveNav();
   setupCurrentYear();
   renderPublications();
