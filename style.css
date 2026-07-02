@@ -784,6 +784,14 @@ code {
 
 /* Print */
 
+@media (max-width: 620px) {
+  .research-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+}
+
 @media print {
   :root {
     --bg: #ffffff;
