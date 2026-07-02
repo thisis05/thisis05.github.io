@@ -278,6 +278,29 @@ code {
   font-weight: 750;
 }
 
+.icon-links {
+  gap: 0.6rem;
+}
+
+.icon-link {
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.icon-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.icon-link:hover,
+.icon-link:focus-visible {
+  transform: translateY(-1px);
+}
+
 .profile-link-button {
   font: inherit;
   cursor: pointer;
