@@ -477,15 +477,16 @@ code {
   background: var(--bg-soft);
 }
 
-.pub-topline {
+.pub-keywords {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.6rem;
+  gap: 0.45rem;
 }
 
-.pub-type,
+.pub-keywords-top {
+  margin-bottom: 0.7rem;
+}
+
 .pub-keyword {
   display: inline-flex;
   align-items: center;
@@ -500,15 +501,6 @@ code {
   letter-spacing: 0.01em;
 }
 
-.pub-venue-short {
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  color: var(--text);
-  font-size: 0.92rem;
-  font-weight: 650;
-}
-
 .pub-title {
   margin: 0;
   font-size: 1.03rem;
@@ -519,13 +511,6 @@ code {
   color: var(--accent);
   font-weight: 900;
   white-space: nowrap;
-}
-
-.pub-keywords {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 0.7rem;
 }
 
 .pub-authors {
@@ -540,7 +525,7 @@ code {
 }
 
 .pub-venue {
-  margin: 0.35rem 0 0;
+  margin: 0.25rem 0 0;
   color: var(--text);
   font-size: 0.94rem;
   font-weight: 750;
