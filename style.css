@@ -13,6 +13,7 @@
   --radius-md: 16px;
   --radius-sm: 999px;
   --header-height: 72px;
+  --note-highlight: #c26a00;
 }
 
 html[data-theme="dark"] {
@@ -25,6 +26,7 @@ html[data-theme="dark"] {
   --line: #2a3140;
   --accent: #8bb7ff;
   --accent-soft: #1b2940;
+  --note-highlight: #ffb86b;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
 }
 
@@ -767,7 +769,8 @@ box-shadow: 0 4px 12px rgba(27, 39, 66, 0.08);
 }
 
 .note-highlight {
-  color: var(--accent);
+  display: inline;
+  color: var(--note-highlight);
   font-weight: 900;
 }
 
