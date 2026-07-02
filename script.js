@@ -91,7 +91,7 @@ const publications = [
     typeLabel: "Preprint",
     title: "A Survey on Centrality and Importance Measures in Hypergraphs: Categorization and Empirical Insights",
     authors: ["Jaewan Chun", "Fanchen Bu", "Yeongho Kim", "Atsushi Miyauchi", "Francesco Bonchi", "Kijung Shin"],
-    venue: "arXiv",
+    venue: "Preprint",
     note: "Survey of centrality and importance measures for hypergraphs.",
     keywords: ["Hypergraphs", "Centrality", "Survey"],
     links: [
