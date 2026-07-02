@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Personal academic homepage for Yeongho Kim. Research, publications, experience, education, awards, and contact information."
+  />
+  <title>Yeongho Kim</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Go to homepage">Yeongho Kim</a>
+
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#awards">Awards</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-icon" aria-hidden="true">◐</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="container page-layout">
+    <aside id="home" class="profile-card" aria-label="Profile summary">
+      <div class="profile-photo-wrap">
+        <img
+          class="profile-photo"
+          src="assets/profile.jpg"
+          alt="Profile photo of Yeongho Kim"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+        />
+        <div class="photo-fallback" aria-hidden="true">YK</div>
+      </div>
+
+      <h1>Yeongho Kim</h1>
+      <p class="role">Master Student, KAIST AI</p>
+      <p class="affiliation">Kim Jaechul Graduate School of AI, KAIST</p>
+
+      <div class="profile-meta">
+        <p>yeongho [at] kaist.ac.kr</p>
+        <p>Seoul, Republic of Korea</p>
+      </div>
+
+      <div class="profile-links" aria-label="Profile links">
+        <a href="assets/cv.pdf">CV</a>
+        <a href="https://scholar.google.com/citations?user=4h6r_rEAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer">Scholar</a>
+        <a href="https://github.com/YOUR_GITHUB_ID" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_ID" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+      <div class="quick-tags" aria-label="Research keywords">
+        <span>Graph ML</span>
+        <span>Dataset Distillation</span>
+        <span>Multimodal Learning</span>
+      </div>
+    </aside>
+
+    <div class="content">
+      <section id="about" class="section hero-section">
+        <p class="eyebrow">Personal Academic Website</p>
+        <h2>About</h2>
+        <p>
+          TODO: Write a short introduction about yourself, your research interests,
+          current affiliation, and what problems you are working on.
+        </p>
+      </section>
+
+      <section id="research" class="section">
+        <div class="section-heading">
+          <h2>Research Interests</h2>
+          <p>Replace these placeholders with your own research keywords.</p>
+        </div>
+        <div class="interest-grid">
+          <article>
+            <h3>Graph Machine Learning</h3>
+            <p>TODO: Add one or two sentences.</p>
+          </article>
+          <article>
+            <h3>Dataset Distillation</h3>
+            <p>TODO: Add one or two sentences.</p>
+          </article>
+          <article>
+            <h3>Multimodal Learning</h3>
+            <p>TODO: Add one or two sentences.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="publications" class="section">
+        <div class="section-heading">
+          <h2>Publications</h2>
+          <p>Publication data is rendered from <code>script.js</code>.</p>
+        </div>
+
+        <div class="pub-toolbar" aria-label="Publication filters">
+          <button class="filter-btn active" type="button" data-filter="all">All</button>
+          <button class="filter-btn" type="button" data-filter="conference">Conference</button>
+          <button class="filter-btn" type="button" data-filter="workshop">Workshop</button>
+          <button class="filter-btn" type="button" data-filter="preprint">Preprint</button>
+        </div>
+
+        <div id="publication-list" class="publication-list" aria-live="polite"></div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="section-heading">
+          <h2>Experience</h2>
+          <p>TODO: Add internships, research assistant roles, or industry experience.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">YYYY - Present</div>
+            <div>
+              <h3>Position / Role</h3>
+              <p>Organization, location. Short description.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="education" class="section">
+        <div class="section-heading">
+          <h2>Education</h2>
+          <p>TODO: Add your degree history.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">YYYY - Present</div>
+            <div>
+              <h3>M.S. in Artificial Intelligence</h3>
+              <p>KAIST, Republic of Korea.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="awards" class="section">
+        <div class="section-heading">
+          <h2>Awards & Honors</h2>
+          <p>TODO: Add awards, scholarships, and honors.</p>
+        </div>
+        <ul class="simple-list">
+          <li><span>YYYY</span> Award name, organization.</li>
+        </ul>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section-heading">
+          <h2>Contact</h2>
+          <p>TODO: Add your preferred contact information.</p>
+        </div>
+        <p>
+          Email: <a href="mailto:yeongho@kaist.ac.kr">yeongho [at] kaist.ac.kr</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer container">
+    <span>© <span id="current-year"></span> Yeongho Kim.</span>
+    <span>Last updated: July 2026.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
