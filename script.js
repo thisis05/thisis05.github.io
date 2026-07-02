@@ -1,9 +1,25 @@
 const publications = [
   {
     year: 2026,
+    type: "preprint",
+    typeLabel: "Preprint",
+    title: "Pre-Deployment Advertisement Ranking under Data Scarcity via Context-Aware Criteria Generation with VLMs",
+    authors: [
+      "Yeongho Kim",
+      "Yeonje Choi",
+      "Kijung Shin"
+    ],
+    venue: "arXiv",
+    keywords: ["Dataset Distillation", "Text-attributed Graph"],
+    links: [
+      { label: "Paper", url: "https://arxiv.org/abs/2606.22975" },
+      { label: "Code", url: "https://github.com/thisis05/TaLK" }
+    ]
+  },
+  {
+    year: 2026,
     type: "conference",
     typeLabel: "Conference",
-    badge: "ACL 2026 Industry",
     title: "Pre-Deployment Advertisement Ranking under Data Scarcity via Context-Aware Criteria Generation with VLMs",
     authors: [
       "Kyungho Kim*",
@@ -18,11 +34,11 @@ const publications = [
       "Juyeon Kim",
       "Kijung Shin"
     ],
-    venue: "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 6: Industry Track)",
+    venue: "ACL 2026 Industry Track",
     note: "Selected for oral presentation. A preliminary version appeared at DATA-FM 2026.",
+    keywords: ["Multimodal Learning", "Marketing AI"],
     links: [
       { label: "Paper", url: "https://aclanthology.org/2026.acl-industry.28/" },
-      { label: "PDF", url: "https://aclanthology.org/2026.acl-industry.28.pdf" },
       { label: "Code", url: "https://github.com/K-Kyungho/ADvisor" }
     ]
   },
@@ -30,7 +46,6 @@ const publications = [
     year: 2026,
     type: "workshop",
     typeLabel: "Workshop",
-    badge: "ICLR 2026 DATA-FM",
     title: "Context-Aware Criteria Generation with VLMs for Advertisement Ranking under Data Scarcity",
     authors: [
       "Kyungho Kim",
@@ -45,11 +60,10 @@ const publications = [
       "Juyeon Kim",
       "Kijung Shin"
     ],
-    venue: "ICLR 2026 Workshop on Navigating and Addressing Data Problems for Foundation Models (DATA-FM)",
-    note: "Workshop version of the advertisement ranking work.",
+    venue: "ICLR  (DATA-FM)",
+    keywords: ["Multimodal Learning", "Marketing AI"],
     links: [
-      { label: "OpenReview", url: "https://openreview.net/forum?id=QnFwLLRyPV" },
-      { label: "PDF", url: "https://openreview.net/pdf?id=QnFwLLRyPV" },
+      { label: "Paper", url: "https://openreview.net/pdf?id=QnFwLLRyPV" },
       { label: "Code", url: "https://github.com/K-Kyungho/ADvisor" }
     ]
   },
@@ -57,14 +71,12 @@ const publications = [
     year: 2026,
     type: "conference",
     typeLabel: "Conference",
-    badge: "ICDE 2026",
     title: "Effective Dataset Distillation for Spatio-Temporal Forecasting with Bi-dimensional Compression",
     authors: ["Taehyung Kwon*", "Yeonje Choi*", "Yeongho Kim", "Kijung Shin"],
-    venue: "42nd IEEE International Conference on Data Engineering (ICDE 2026)",
-    note: "STemDist: dataset distillation for spatio-temporal time-series forecasting with spatial and temporal compression.",
+    venue: "ICDE 2026",
+    keywords: ["Dataset Distillation", "Spatio-Temporal Forecasting"],
     links: [
       { label: "Paper", url: "https://arxiv.org/abs/2603.10410" },
-      { label: "PDF", url: "https://arxiv.org/pdf/2603.10410" },
       { label: "Code", url: "https://github.com/kbrother/STemDist" }
     ]
   },
@@ -72,25 +84,24 @@ const publications = [
     year: 2025,
     type: "preprint",
     typeLabel: "Preprint",
-    badge: "arXiv 2025",
     title: "A Survey on Centrality and Importance Measures in Hypergraphs: Categorization and Empirical Insights",
     authors: ["Jaewan Chun", "Fanchen Bu", "Yeongho Kim", "Atsushi Miyauchi", "Francesco Bonchi", "Kijung Shin"],
-    venue: "arXiv:2512.00107",
+    venue: "arXiv",
     note: "Survey of centrality and importance measures for hypergraphs.",
+    keywords: ["Hypergraphs", "Centrality", "Survey"],
     links: [
       { label: "Paper", url: "https://arxiv.org/abs/2512.00107" },
-      { label: "PDF", url: "https://arxiv.org/pdf/2512.00107" }
+      { label: "Code", url: "https://github.com/jaewan01/hypergraph-centrality-survey" }
     ]
   },
   {
     year: 2025,
     type: "conference",
     typeLabel: "Conference",
-    badge: "WWW 2025",
     title: "Beyond Neighbors: Distance-Generalized Graphlets for Enhanced Graph Characterization",
     authors: ["Yeongho Kim", "Yuyeong Kim", "Geon Lee", "Kijung Shin"],
-    venue: "The Web Conference 2025 (WWW 2025)",
-    note: "Introduces distance-generalized graphlets and the EDGE exact counting algorithm.",
+    venue: "WWW 2025",
+    keywords: ["Graph Mining"],
     links: [
       { label: "Paper", url: "https://doi.org/10.1145/3696410.3714558" },
       { label: "Code", url: "https://github.com/thisis05/EDGE" }
@@ -115,12 +126,46 @@ const formatAuthors = (authors) => authors
     return safeAuthor.replace(/Yeongho Kim/g, '<strong class="me">Yeongho Kim</strong>');
   })
   .join(", ");
+const getPublicationPrefix = (type) => {
+  const prefixes = {
+    conference: "C",
+    preprint: "P",
+    journal: "J"
+  };
+
+  return prefixes[type] || "O";
+};
+
+const getNumberedPublications = () => {
+  const counters = {
+    conference: 0,
+    preprint: 0,
+    journal: 0
+  };
+
+  return publications.map((publication) => {
+    const type = publication.type;
+
+    if (!Object.prototype.hasOwnProperty.call(counters, type)) {
+      counters[type] = 0;
+    }
+
+    counters[type] += 1;
+
+    return {
+      ...publication,
+      pubNumber: `${getPublicationPrefix(type)}${counters[type]}`
+    };
+  });
+};
 
 const renderPublications = (filter = "all") => {
   const container = document.getElementById("publication-list");
   if (!container) return;
 
-  const visiblePublications = publications.filter((publication) =>
+  const numberedPublications = getNumberedPublications();
+
+  const visiblePublications = numberedPublications.filter((publication) =>
     filter === "all" || publication.type === filter
   );
 
@@ -138,13 +183,24 @@ const renderPublications = (filter = "all") => {
       ${groupedByYear[year].map((publication) => `
         <article class="pub-card">
           <div class="pub-topline">
-            <span class="pub-badge">${escapeHTML(publication.badge)}</span>
+            <span class="pub-number">${escapeHTML(publication.pubNumber)}</span>
             <span class="pub-type">${escapeHTML(publication.typeLabel)}</span>
+            <span class="pub-venue-short">${escapeHTML(publication.venue)}</span>
           </div>
+
           <h3 class="pub-title">${escapeHTML(publication.title)}</h3>
+
+          <div class="pub-keywords">
+            ${publication.keywords.map((keyword) => `
+              <span>${escapeHTML(keyword)}</span>
+            `).join("")}
+          </div>
+
           <p class="pub-authors">${formatAuthors(publication.authors)}</p>
           <p class="pub-venue">${escapeHTML(publication.venue)}</p>
+
           ${publication.note ? `<p class="pub-note">${escapeHTML(publication.note)}</p>` : ""}
+
           <div class="pub-links">
             ${publication.links.map((link) => `
               <a class="pub-link" href="${escapeAttribute(link.url)}" target="_blank" rel="noopener noreferrer">
