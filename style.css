@@ -577,6 +577,7 @@ code {
 }
 
 .pub-card {
+  scroll-margin-top: calc(var(--header-height) + 24px);
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
@@ -641,6 +642,39 @@ code {
   margin: 0.4rem 0 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.note-highlight {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.note-ref {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.08rem 0.38rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.note-ref::before {
+  content: "[";
+}
+
+.note-ref::after {
+  content: "]";
+}
+
+.note-ref:hover,
+.note-ref:focus-visible {
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
 }
 
 .pub-links {
