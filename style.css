@@ -441,6 +441,62 @@ code {
 }
 
 /* Research interests */
+/* Research compact list */
+
+.research-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.research-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.research-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  background: color-mix(in srgb, var(--accent-soft) 45%, var(--bg-soft));
+  transform: translateY(-1px);
+}
+
+.research-topic {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.research-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.research-topic h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.research-item .paper-refs {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
 
 .interest-grid {
   display: grid;
