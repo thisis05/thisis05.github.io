@@ -36,7 +36,9 @@ const publications = [
     ],
     venue: "ACL 2026 Industry Track",
     note: [
-      { text: "Selected for oral presentation.", highlight: true },
+      { text: "Selected for oral presentation.", highlight: true }
+    ],
+    note: [
       { text: " A preliminary version appeared at " },
       { ref: "W1" },
       { text: "." }
