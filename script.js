@@ -1,19 +1,32 @@
 const publications = [
   {
     year: 2026,
-    type: "preprint",
-    typeLabel: "Preprint",
+    type: "conference",
+    typeLabel: "Conference",
     title: "TaLK: Text-attributed Graph Dataset Distillation via Coupling Language Model with Graph-Aware Kernel",
     authors: [
       "Yeongho Kim",
       "Yeonje Choi",
       "Kijung Shin"
     ],
-    venue: "Preprint",
+    venue: "EMNLP 2026 Findings",
     keywords: ["Dataset Distillation", "Text-attributed Graph"],
     links: [
       { label: "Paper", url: "https://arxiv.org/abs/2606.22975" },
       { label: "Code", url: "https://github.com/thisis05/TaLK" }
+    ]
+  },
+  {
+    year: 2026,
+    type: "journal",
+    typeLabel: "Journal",
+    title: "A Survey on Centrality and Importance Measures in Hypergraphs: Categorization and Empirical Insights",
+    authors: ["Jaewan Chun", "Fanchen Bu", "Yeongho Kim", "Atsushi Miyauchi", "Francesco Bonchi", "Kijung Shin"],
+    venue: "ACM Computing Surveys (SCI(E) Journal, 2026)",
+    keywords: ["Hypergraph Mining"],
+    links: [
+      { label: "Paper", url: "https://arxiv.org/abs/2512.00107" },
+      { label: "Code", url: "https://github.com/jaewan01/hypergraph-centrality-survey" }
     ]
   },
   {
@@ -83,19 +96,6 @@ const publications = [
     links: [
       { label: "Paper", url: "https://arxiv.org/abs/2603.10410" },
       { label: "Code", url: "https://github.com/kbrother/STemDist" }
-    ]
-  },
-  {
-    year: 2025,
-    type: "preprint",
-    typeLabel: "Preprint",
-    title: "A Survey on Centrality and Importance Measures in Hypergraphs: Categorization and Empirical Insights",
-    authors: ["Jaewan Chun", "Fanchen Bu", "Yeongho Kim", "Atsushi Miyauchi", "Francesco Bonchi", "Kijung Shin"],
-    venue: "Preprint",
-    keywords: ["Hypergraph Mining"],
-    links: [
-      { label: "Paper", url: "https://arxiv.org/abs/2512.00107" },
-      { label: "Code", url: "https://github.com/jaewan01/hypergraph-centrality-survey" }
     ]
   },
   {
